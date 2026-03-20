@@ -22,15 +22,23 @@ export default function ExhibitPoster({
   alt,
 }: Props) {
   const [useImage, setUseImage] = useState(Boolean(imageSrc))
+  const [cacheBust, setCacheBust] = useState<number | null>(null)
 
   useEffect(() => {
     setUseImage(Boolean(imageSrc))
   }, [imageSrc])
 
+  useEffect(() => {
+    // Cache busting to force updated images after redeploy.
+    setCacheBust(Math.floor(Date.now() / 1000))
+  }, [])
+
   if (useImage && imageSrc) {
+    const cb = cacheBust ?? 0
+    const finalSrc = imageSrc.includes('?') ? `${imageSrc}&cb=${cb}` : `${imageSrc}?cb=${cb}`
     return (
       <img
-        src={imageSrc}
+        src={finalSrc}
         alt={alt ?? variant}
         className={className}
         onError={() => setUseImage(false)}
