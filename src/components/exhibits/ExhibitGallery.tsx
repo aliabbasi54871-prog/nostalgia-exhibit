@@ -1,4 +1,4 @@
-import AnimatedPoster from '../media/AnimatedPoster'
+import ExhibitPoster from '../media/ExhibitPoster'
 import type { ConnectionMode } from '../desktop/types'
 import { exhibits } from '../../data/exhibits'
 import type { Exhibit } from '../../data/exhibits'
@@ -61,11 +61,12 @@ export default function ExhibitGallery({ mode, onOpen, userExhibit }: Props) {
           >
             <div style={{ display: 'flex', gap: 10 }}>
               <div style={{ width: 96, height: 96, flex: '0 0 auto' }}>
-                <AnimatedPoster
+                <ExhibitPoster
                   seed={ex.seed}
                   variant={ex.subtitle}
                   mode={mode}
                   glitchBoost={false}
+                  imageSrc={ex.imageSrc}
                 />
               </div>
               <div style={{ minWidth: 0 }}>

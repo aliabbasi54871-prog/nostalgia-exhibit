@@ -7,6 +7,7 @@ export type Exhibit = {
   curatorLong: string
   seed: number
   tags: readonly string[]
+  imageSrc?: string
 }
 
 const base = [
@@ -113,5 +114,6 @@ export const exhibits: Exhibit[] = base.map((b, i) => ({
   index: i + 1,
   ...b,
   seed: 1000 + i * 73,
+  imageSrc: `/exhibits/ex-${String(i + 1).padStart(2, '0')}.png`,
 }))
 

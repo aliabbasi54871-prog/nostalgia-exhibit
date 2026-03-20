@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import AnimatedPoster from '../media/AnimatedPoster'
+import ExhibitPoster from '../media/ExhibitPoster'
 import type { ConnectionMode } from '../desktop/types'
 import type { Exhibit } from '../../data/exhibits'
 
@@ -69,12 +69,14 @@ export default function ExhibitViewer({
               background: 'rgba(255,255,255,0.4)',
             }}
           />
-          <AnimatedPoster
+          <ExhibitPoster
             seed={exhibit.seed}
             variant={exhibit.subtitle}
             mode={mode}
             glitchBoost={glitchBoost}
             className="v-PosterCanvas"
+            imageSrc={exhibit.imageSrc}
+            alt={exhibit.title}
           />
           <div className={glitchBoost ? 'v-GlitchLayer v-GlitchOn' : 'v-GlitchLayer'} />
         </div>
