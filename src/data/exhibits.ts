@@ -116,11 +116,10 @@ export const exhibits: Exhibit[] = base.map((b, i) => ({
   index: i + 1,
   ...b,
   seed: 1000 + i * 73,
-  // У нас часть картинок формата PNG, часть JPG.
-  // Путь должен совпадать с файлами в `public/exhibits/`.
-  imageSrc:
-    i + 1 <= 5
-      ? `${baseUrl}exhibits/ex-${String(i + 1).padStart(2, '0')}.png`
-      : `${baseUrl}exhibits/ex-${String(i + 1).padStart(2, '0')}.jpg`,
+  // Картинки берём ТОЛЬКО из папки `проект суворова` (на данный момент там 8 файлов: 1,2,3,8,9,10,11,12).
+  // Остальные экспонаты остаются на canvas-заглушках (чтобы ничего “не оттуда” не подтянулось).
+  imageSrc: [1, 2, 3, 8, 9, 10, 11, 12].includes(i + 1)
+    ? `${baseUrl}exhibits/ex-${String(i + 1).padStart(2, '0')}.jpg`
+    : undefined,
 }))
 
