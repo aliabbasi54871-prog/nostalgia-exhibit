@@ -131,7 +131,25 @@ export default function WindowFrame(props: Props) {
       >
         <div className="v-WindowTitle">{props.title}</div>
         <div className="v-WindowHeaderButtons">
-          <div className="v-WindowBtn" role="button" onClick={props.onClose}>
+          <div
+            className="v-WindowBtn"
+            role="button"
+            tabIndex={0}
+            aria-label={`Close window: ${props.title}`}
+            onPointerDown={(e) => {
+              // Prevent header drag handler from starting when user presses the close button.
+              e.stopPropagation()
+              e.preventDefault()
+              props.onClose()
+            }}
+            onClick={(e) => {
+              // Safety: click should never bubble into the header.
+              e.stopPropagation()
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') props.onClose()
+            }}
+          >
             ×
           </div>
         </div>
