@@ -114,6 +114,11 @@ export const exhibits: Exhibit[] = base.map((b, i) => ({
   index: i + 1,
   ...b,
   seed: 1000 + i * 73,
-  imageSrc: `/exhibits/ex-${String(i + 1).padStart(2, '0')}.png`,
+  // У нас часть картинок формата PNG, часть JPG.
+  // Путь должен совпадать с файлами в `public/exhibits/`.
+  imageSrc:
+    i + 1 <= 5
+      ? `/exhibits/ex-${String(i + 1).padStart(2, '0')}.png`
+      : `/exhibits/ex-${String(i + 1).padStart(2, '0')}.jpg`,
 }))
 
