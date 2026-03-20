@@ -10,6 +10,8 @@ export type Exhibit = {
   imageSrc?: string
 }
 
+const baseUrl = import.meta.env.BASE_URL
+
 const base = [
   {
     title: 'Диалог с CRT',
@@ -118,7 +120,7 @@ export const exhibits: Exhibit[] = base.map((b, i) => ({
   // Путь должен совпадать с файлами в `public/exhibits/`.
   imageSrc:
     i + 1 <= 5
-      ? `/exhibits/ex-${String(i + 1).padStart(2, '0')}.png`
-      : `/exhibits/ex-${String(i + 1).padStart(2, '0')}.jpg`,
+      ? `${baseUrl}exhibits/ex-${String(i + 1).padStart(2, '0')}.png`
+      : `${baseUrl}exhibits/ex-${String(i + 1).padStart(2, '0')}.jpg`,
 }))
 
